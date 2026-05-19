@@ -36,6 +36,15 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
 
+// root route for Render health checks
+app.get('/', (_req, res) => {
+  res.json({
+    success: true,
+    message: 'Smart Leads Dashboard API',
+    docs: '/api/health',
+  });
+});
+
 // health check endpoint
 app.get('/api/health', (_req, res) => {
   ApiResponse.success(res, 200, 'Smart Leads API is running', {
