@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Save } from 'lucide-react';
 import { ILead, LeadStatus, LeadSource } from '../types';
@@ -13,12 +13,24 @@ interface LeadFormProps {
 
 const LeadForm: React.FC<LeadFormProps> = ({ isOpen, onClose, onSubmit, initialData }) => {
   const [formData, setFormData] = useState({
-    name: initialData?.name || '',
-    email: initialData?.email || '',
-    status: initialData?.status || 'New',
-    source: initialData?.source || 'Website',
+    name: '',
+    email: '',
+    status: 'New' as string,
+    source: 'Website' as string,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // reset form whenever the modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setFormData({
+        name: initialData?.name || '',
+        email: initialData?.email || '',
+        status: initialData?.status || 'New',
+        source: initialData?.source || 'Website',
+      });
+    }
+  }, [isOpen, initialData]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

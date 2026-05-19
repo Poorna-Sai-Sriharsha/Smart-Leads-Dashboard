@@ -50,7 +50,11 @@ const LeadsPage: React.FC = () => {
       });
 
       const { data } = await api.get(`/leads?${params}`);
-      setLeads(data.data);
+      const normalized = (data.data || []).map((lead: any) => ({
+        ...lead,
+        id: lead.id || lead._id,
+      }));
+      setLeads(normalized);
       setMeta(data.meta);
     } catch (err) {
       toast.error('Failed to fetch leads');

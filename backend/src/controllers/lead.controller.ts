@@ -43,7 +43,7 @@ export const getLeads = async (
 
     const sortOrder = sortBy === 'oldest' ? 1 : -1;
 
-    const [leads, total] = await Promise.all([
+    const [rawLeads, total] = await Promise.all([
       Lead.find(filter)
         .sort({ createdAt: sortOrder })
         .skip(skip)
@@ -52,6 +52,9 @@ export const getLeads = async (
         .lean(),
       Lead.countDocuments(filter),
     ]);
+
+    // lean() bypasses toJSON transforms, so we map _id to id manually
+    const leads = rawLeads.map((lead) => ({ ...lead, id: String(lead._id) }));
 
     const totalPages = Math.ceil(total / limitNum);
     const meta: IPaginationMeta = {
@@ -76,12 +79,13 @@ export const getLeadById = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const lead = await Lead.findById(req.params.id)
+    const rawLead = await Lead.findById(req.params.id)
       .populate('assignedTo', 'name email role')
       .lean();
 
-    if (!lead) throw ApiError.notFound('Lead not found');
+    if (!rawLead) throw ApiError.notFound('Lead not found');
 
+    const lead = { ...rawLead, id: String(rawLead._id) };
     ApiResponse.success(res, 200, 'Lead retrieved', lead);
   } catch (err) {
     next(err);
@@ -113,14 +117,15 @@ export const updateLead = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const lead = await Lead.findByIdAndUpdate(
+    const rawLead = await Lead.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
       { new: true, runValidators: true }
     ).lean();
 
-    if (!lead) throw ApiError.notFound('Lead not found');
+    if (!rawLead) throw ApiError.notFound('Lead not found');
 
+    const lead = { ...rawLead, id: String(rawLead._id) };
     ApiResponse.success(res, 200, 'Lead updated successfully', lead);
   } catch (err) {
     next(err);
