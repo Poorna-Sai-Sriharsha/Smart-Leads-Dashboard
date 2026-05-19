@@ -74,7 +74,7 @@ function generateToken(user: { _id: unknown; name: string; email: string; role: 
     throw new Error('JWT_SECRET is not defined in environment variables');
   }
 
-  const expiresIn = (process.env.JWT_EXPIRES_IN || '7d') as string;
-
-  return jwt.sign(payload, secret, { expiresIn });
+  return jwt.sign(payload, secret, {
+    expiresIn: process.env.JWT_EXPIRES_IN || '7d',
+  } as jwt.SignOptions);
 }
