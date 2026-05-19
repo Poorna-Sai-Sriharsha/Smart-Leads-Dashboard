@@ -2,6 +2,8 @@
 
 A full-stack Lead Management Dashboard built with the MERN stack and TypeScript — featuring JWT authentication, role-based access control, advanced multi-filter search, backend pagination, CSV export, and a responsive dark mode UI with real-time analytics.
 
+![Dashboard Preview](smartleads.png)
+
 ## 🚀 Setup Instructions
 
 ```bash
@@ -230,7 +232,7 @@ All filters are optional and can be combined freely.
 ```env
 PORT=5000
 NODE_ENV=development
-MONGODB_URI=mongodb://localhost:27017/smart_leads_db
+MONGODB_URI=your_mongodb_url_here
 JWT_SECRET=your_jwt_secret_here
 JWT_EXPIRES_IN=7d
 CORS_ORIGIN=http://localhost:5173
@@ -254,6 +256,3 @@ docker-compose up -d --build
 - **Advanced Analytics** — Conversion funnel visualization, source performance comparison, and time-to-close metrics.
 - **Webhook Support** — Push lead events to external CRMs and notification services.
 
-## 📄 License
-
-MIT
