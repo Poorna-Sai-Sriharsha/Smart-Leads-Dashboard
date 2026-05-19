@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans antialiased bg-surface-50 text-gray-900 dark:bg-surface-950 dark:text-gray-100 transition-colors duration-300;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-surface-800 rounded-full hover:bg-gray-400 dark:hover:bg-surface-850;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 dark:bg-surface-900/80 backdrop-blur-xl border border-gray-200/50 dark:border-white/5 rounded-2xl shadow-lg;
+  }
+  .glass-card-solid {
+    @apply bg-white dark:bg-surface-900 border border-gray-200 dark:border-surface-800 rounded-2xl shadow-sm;
+  }
+  .btn-primary {
+    @apply bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 text-white font-medium px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 active:scale-95;
+  }
+  .btn-secondary {
+    @apply bg-gray-100 dark:bg-surface-800 hover:bg-gray-200 dark:hover:bg-surface-850 text-gray-700 dark:text-gray-300 font-medium px-5 py-2.5 rounded-xl transition-all duration-200 active:scale-95;
+  }
+  .btn-danger {
+    @apply bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-400 font-medium px-5 py-2.5 rounded-xl transition-all duration-200 active:scale-95;
+  }
+  .input-field {
+    @apply w-full bg-gray-50 dark:bg-surface-850 border border-gray-200 dark:border-surface-800 rounded-xl px-4 py-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all duration-200;
+  }
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase;
+  }
+}
