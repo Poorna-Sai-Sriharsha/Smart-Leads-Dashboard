@@ -15,8 +15,8 @@ const LeadForm: React.FC<LeadFormProps> = ({ isOpen, onClose, onSubmit, initialD
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    status: 'New' as string,
-    source: 'Website' as string,
+    status: 'New' as LeadStatus,
+    source: 'Website' as LeadSource,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 

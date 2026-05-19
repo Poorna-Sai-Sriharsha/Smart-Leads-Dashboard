@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Mail, Globe, Calendar, User as UserIcon } from 'lucide-react';
+import { X, Globe, Calendar, User as UserIcon } from 'lucide-react';
 import { ILead } from '../types';
 import { statusColors, sourceColors } from '../utils/helpers';
 

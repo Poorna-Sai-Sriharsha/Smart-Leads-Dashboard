@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Search, Filter, Download, Trash2, Edit2, MoreVertical } from 'lucide-react';
+import { Plus, Search, Download, Trash2, Edit2 } from 'lucide-react';
 import api from '../api/axios';
-import { ILead, ILeadFilters, IPaginationMeta, LeadStatus, LeadSource } from '../types';
+import { ILead, ILeadFilters, IPaginationMeta } from '../types';
 import { useDebounce } from '../hooks/useDebounce';
-import { exportToCSV, statusColors, sourceColors } from '../utils/helpers';
+import { statusColors, sourceColors } from '../utils/helpers';
 import { useAuth } from '../context/AuthContext';
 import Pagination from '../components/Pagination';
 import SkeletonLoader from '../components/SkeletonLoader';
